@@ -12,9 +12,9 @@ interface ContactInfoProps {
 }
 
 const contactInfo: ContactItem[] = [
-  { icon: Mail, label: 'Email', value: 'snlbokare@gmail.com' },
-  { icon: MessageCircle, label: 'Phone', value: '+91 9322739360' },
-  { icon: MapPin, label: 'Location', value: 'India' }
+  { icon: Mail, label: 'Email', value: 'contact@sunilbokare.dev' },
+  { icon: MessageCircle, label: 'WhatsApp', value: '+91 XXX XXX XXXX' },
+  { icon: MapPin, label: 'Location', value: 'Maharashtra, India' }
 ];
 
 const ContactInfo = ({ isInView }: ContactInfoProps) => {
@@ -25,7 +25,7 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
       transition={{ duration: 0.8, delay: 0.2 }}
       className="space-y-8"
     >
-      <motion.div
+      <motion.div 
         className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl glass relative overflow-hidden"
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 300 }}
@@ -43,7 +43,7 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
           transition={{ duration: 8, repeat: Infinity }}
         />
 
-        <motion.h3
+        <motion.h3 
           className="font-display text-2xl font-bold mb-6 relative"
           initial={{ opacity: 0, y: -10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -73,10 +73,10 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
               transition={{ delay: 0.4 + index * 0.1, type: "spring" }}
               whileHover={{ x: 10 }}
             >
-              <motion.div
+              <motion.div 
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0 relative overflow-hidden"
-                whileHover={{
-                  scale: 1.1,
+                whileHover={{ 
+                  scale: 1.1, 
                   rotate: 5,
                   backgroundColor: 'hsl(var(--primary) / 0.2)'
                 }}
@@ -88,7 +88,7 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1.5 }}
                 />
-
+                
                 <motion.div
                   whileHover={{ rotate: [0, -10, 10, 0] }}
                   transition={{ duration: 0.5 }}
@@ -106,13 +106,13 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
               </motion.div>
 
               <div className="pt-1">
-                <motion.h4
+                <motion.h4 
                   className="font-medium mb-1 transition-colors"
                   whileHover={{ color: 'hsl(var(--primary))' }}
                 >
                   {item.label}
                 </motion.h4>
-                <motion.p
+                <motion.p 
                   className="text-muted-foreground"
                   initial={{ opacity: 0.7 }}
                   whileHover={{ opacity: 1 }}
@@ -136,7 +136,7 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
       </motion.div>
 
       {/* Availability badge */}
-      <motion.div
+      <motion.div 
         className="p-6 rounded-2xl glass inline-flex items-center gap-4 relative overflow-hidden"
         initial={{ opacity: 0, y: 20, scale: 0.9 }}
         animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
@@ -145,7 +145,7 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
       >
         {/* Pulse ring */}
         <div className="relative">
-          <motion.div
+          <motion.div 
             className="w-4 h-4 rounded-full bg-green-500"
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
@@ -163,14 +163,14 @@ const ContactInfo = ({ isInView }: ContactInfoProps) => {
         </div>
 
         <div>
-          <motion.span
+          <motion.span 
             className="text-foreground font-medium"
             animate={{ opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             Available for new projects
           </motion.span>
-          <motion.p
+          <motion.p 
             className="text-xs text-muted-foreground mt-0.5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

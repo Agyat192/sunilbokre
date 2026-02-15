@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowDown, Sparkles } from 'lucide-react';
-import ProfilePhoto from './ProfilePhoto';
 
 const roles = [
   "Co-Founder @ Bhoomivardhan Agritech",
@@ -98,16 +97,6 @@ const Hero = () => {
         style={{ y, opacity, scale }}
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
       >
-        {/* Profile Photo */}
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
-          className="mb-12"
-        >
-          <ProfilePhoto />
-        </motion.div>
-
         {/* Badge with bounce animation */}
         <motion.div
           initial={{ opacity: 0, y: -30, scale: 0.8 }}

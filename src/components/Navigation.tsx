@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#skills', label: 'Skills' },
-  { href: '#case-studies', label: 'Case Studies' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -21,7 +20,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ['hero', 'about', 'skills', 'case-studies', 'contact'];
+      const sections = ['hero', 'about', 'skills', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {

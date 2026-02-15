@@ -29,33 +29,14 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setIsSubmitted(true);
-        setFormState({ name: '', email: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 3000);
-      } else {
-        console.error('Failed to send message:', data.message);
-        // You might want to show an error message to the user here
-        alert('Failed to send message. Please try again later.');
-      }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('An error occurred. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setFormState({ name: '', email: '', message: '' });
+    
+    setTimeout(() => setIsSubmitted(false), 3000);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,7 +52,7 @@ const Contact = () => {
   return (
     <section id="contact" className="section-padding relative overflow-hidden" ref={ref}>
       {/* Animated mesh gradient background */}
-      <motion.div
+      <motion.div 
         className="absolute inset-0 opacity-30"
         animate={{
           background: [
@@ -82,7 +63,7 @@ const Contact = () => {
         }}
         transition={{ duration: 10, repeat: Infinity }}
       />
-
+      
       {/* Floating particles */}
       {[...Array(8)].map((_, i) => (
         <motion.div
@@ -124,7 +105,7 @@ const Contact = () => {
             <span>Let's work together</span>
           </motion.div>
 
-          <motion.h2
+          <motion.h2 
             className="font-display text-3xl sm:text-4xl md:text-6xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -141,7 +122,7 @@ const Contact = () => {
                 {char === 'C' ? <span className="text-gradient">{char}</span> : char}
               </motion.span>
             ))}
-            <motion.span
+            <motion.span 
               className="text-gradient"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
@@ -151,7 +132,7 @@ const Contact = () => {
             </motion.span>
           </motion.h2>
 
-          <motion.p
+          <motion.p 
             className="text-muted-foreground text-lg max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -171,10 +152,10 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="perspective-1000"
           >
-            <motion.form
-              onSubmit={handleSubmit}
+            <motion.form 
+              onSubmit={handleSubmit} 
               className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl glass relative overflow-hidden"
-              whileHover={{
+              whileHover={{ 
                 boxShadow: "0 20px 60px hsl(var(--primary) / 0.15)",
                 y: -5
               }}
@@ -207,7 +188,7 @@ const Contact = () => {
                   >
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </motion.div>
-                  <motion.p
+                  <motion.p 
                     className="text-2xl font-display font-bold mb-2"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: isSubmitted ? 1 : 0, y: isSubmitted ? 0 : 10 }}
@@ -215,7 +196,7 @@ const Contact = () => {
                   >
                     Message Sent!
                   </motion.p>
-                  <motion.p
+                  <motion.p 
                     className="text-muted-foreground"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: isSubmitted ? 1 : 0 }}

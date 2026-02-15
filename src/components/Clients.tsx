@@ -13,9 +13,9 @@ import projectBhoomivardhan3 from '@/assets/bhoomivardhan3.jpeg';
 
 const clients = [
   { name: 'Magic', description: 'Digital Innovation Partner', image: '', gallery: [], url: '' },
-  { name: 'Sudarshan Aerial Solution', description: 'Drone Technology Solutions', image: clientSudarshan, gallery: [clientSudarshan, clientSudarshan2], url: '' },
+  { name: 'Sudarshan Aerial Solution', description: 'Drone Technology Solutions', image: clientSudarshan, gallery: [clientSudarshan, clientSudarshan2], url: 'https://sudarshan-aerial.com' },
   { name: 'Wari Foundation', description: 'Social Impact Initiative', image: '', gallery: [], url: '' },
-  { name: 'RaiseUp', description: 'Startup Acceleration', image: clientRaiseup, gallery: [clientRaiseup, clientRaiseup2], url: '' },
+  { name: 'RaiseUp', description: 'Startup Acceleration', image: clientRaiseup, gallery: [clientRaiseup, clientRaiseup2], url: 'https://raiseup.in' },
   { name: 'Bhoomivardhan', description: 'Agritech Innovation', image: projectBhoomivardhan, gallery: [projectBhoomivardhan, projectBhoomivardhan2, projectBhoomivardhan3], url: 'https://bhoomivardhan.com' },
 ];
 
@@ -31,7 +31,7 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
       onClick={onClose}
     >
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/80 to-primary/5 backdrop-blur-3xl"
+        className="absolute inset-0 bg-background/60 backdrop-blur-2xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       />
@@ -64,21 +64,12 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
           stiffness: 130,
           mass: 0.7,
         }}
-        className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl"
-        style={{ 
-          perspective: '1200px', 
-          transformStyle: 'preserve-3d',
-          background: 'linear-gradient(135deg, hsl(var(--background) / 0.95), hsl(var(--card) / 0.9))',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid hsl(var(--primary) / 0.2)',
-          boxShadow: '0 25px 50px -12px hsl(var(--primary) / 0.25), 0 0 0 1px hsl(var(--primary) / 0.1)'
-        }}
+        className="relative w-full max-w-2xl rounded-3xl glass glow overflow-hidden"
+        style={{ perspective: '1200px', transformStyle: 'preserve-3d' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Hero Image with mouse parallax */}
-        <div className="relative w-full h-56 md:h-72 overflow-hidden flex items-center justify-center" style={{
-          background: 'linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.05))'
-        }}>
+        <div className="relative w-full h-56 md:h-72 overflow-hidden flex items-center justify-center bg-secondary/30">
           {client.image ? (
             <MouseParallaxImage
               src={client.image}
@@ -90,7 +81,7 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
               Coming Soon
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
 
           {/* Floating client name */}
           <motion.div
@@ -101,30 +92,17 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
           >
             {/* Logo circle */}
             <motion.div
-              className="w-16 h-16 rounded-2xl flex items-center justify-center mb-3 relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary) / 0.2), hsl(var(--accent) / 0.1))',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid hsl(var(--primary) / 0.3)'
-              }}
+              className="w-16 h-16 rounded-2xl bg-primary/20 backdrop-blur-sm flex items-center justify-center mb-3 border border-primary/20"
               initial={{ scale: 0, rotate: -90 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
             >
-              <motion.div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(45deg, hsl(var(--primary) / 0.1), transparent, hsl(var(--accent) / 0.1))'
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              />
-              <span className="font-display text-2xl font-bold text-gradient relative z-10">
+              <span className="font-display text-2xl font-bold text-primary">
                 {client.name.charAt(0)}
               </span>
             </motion.div>
             <motion.h2
-              className="font-display text-3xl md:text-4xl font-bold text-foreground drop-shadow-lg"
+              className="font-display text-3xl md:text-4xl font-bold text-white drop-shadow-lg"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
@@ -132,7 +110,7 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
               {client.name}
             </motion.h2>
             <motion.p
-              className="text-muted-foreground/90 text-lg mt-1"
+              className="text-white/80 text-lg mt-1"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
@@ -145,51 +123,28 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
         {/* Close button */}
         <motion.button
           onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center z-20 transition-all duration-300"
-          style={{
-            background: 'linear-gradient(135deg, hsl(var(--background) / 0.9), hsl(var(--card) / 0.8))',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid hsl(var(--border) / 0.5)'
-          }}
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-primary/10 transition-colors z-20"
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 0.3, type: "spring" }}
-          whileHover={{ 
-            scale: 1.1, 
-            rotate: 90,
-            background: 'linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.05))',
-            borderColor: 'hsl(var(--primary) / 0.5)'
-          }}
+          whileHover={{ scale: 1.1, rotate: 90 }}
           whileTap={{ scale: 0.9 }}
         >
-          <X className="w-5 h-5 text-foreground" />
+          <X className="w-5 h-5" />
         </motion.button>
 
         {/* Content */}
-        <div className="p-8" style={{
-          background: 'linear-gradient(180deg, transparent, hsl(var(--background) / 0.3))'
-        }}>
+        <div className="p-8">
           {client.url && (
             <motion.a
               href={client.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300"
-              style={{
-                background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.1))',
-                color: 'hsl(var(--primary))',
-                border: '1px solid hsl(var(--primary) / 0.2)'
-              }}
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary font-medium transition-colors"
               initial={{ opacity: 0, x: -30, rotateY: -20 }}
               animate={{ opacity: 1, x: 0, rotateY: 0 }}
               transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
-              whileHover={{ 
-                scale: 1.05, 
-                x: 5,
-                background: 'linear-gradient(135deg, hsl(var(--primary) / 0.25), hsl(var(--accent) / 0.2))',
-                borderColor: 'hsl(var(--primary) / 0.4)',
-                boxShadow: '0 10px 25px hsl(var(--primary) / 0.2)'
-              }}
+              whileHover={{ scale: 1.05, x: 5 }}
               whileTap={{ scale: 0.95 }}
             >
               <Globe className="w-5 h-5" />
@@ -210,12 +165,6 @@ const ClientModal = ({ client, onClose }: { client: Client; onClose: () => void 
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.5 }}
               className="mt-6"
-              style={{
-                background: 'linear-gradient(135deg, hsl(var(--card) / 0.3), hsl(var(--secondary) / 0.1))',
-                borderRadius: '1rem',
-                padding: '1rem',
-                border: '1px solid hsl(var(--border) / 0.3)'
-              }}
             >
               <ImageGallery3D images={client.gallery} title={client.name} />
             </motion.div>
