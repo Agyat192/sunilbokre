@@ -1,73 +1,139 @@
-# Welcome to your Lovable project
+# Sunil Bokare - AI & IoT Systems Architect Portfolio
 
-## Project info
+## Overview
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Professional portfolio showcasing AI & IoT systems architecture, full-stack development, and cybersecurity expertise across agriculture, construction, and smart city applications.
 
-## How can I edit this code?
+## 🚀 Live Demo
 
-There are several ways of editing your application.
+Visit the portfolio: [https://suniilbokare.in](https://suniilbokare.in)
 
-**Use Lovable**
+## ✨ Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **3D Animated Profile Photo** with mouse tracking and glassmorphism effects
+- **Interactive Case Studies** showcasing real-world projects
+- **WhatsApp Integration** for direct contact
+- **SEO Optimized** with structured data and meta tags
+- **Responsive Design** optimized for all devices
+- **Modern UI/UX** with smooth animations and transitions
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Technologies Used
 
-**Use your preferred IDE**
+- **Frontend**: React 18, TypeScript, Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+- **Deployment**: GitHub Pages
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📋 Project Structure
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```
+src/
+├── components/
+│   ├── Hero.tsx              # Hero section with 3D profile photo
+│   ├── Navigation.tsx        # Navigation with scroll detection
+│   ├── About.tsx             # About section
+│   ├── Skills.tsx            # Skills showcase
+│   ├── CaseStudies.tsx       # Interactive case studies
+│   ├── Clients.tsx           # Client testimonials
+│   ├── Contact.tsx           # Contact form with WhatsApp
+│   └── contact/
+│       └── ContactInfo.tsx   # Contact information display
+├── pages/
+│   └── Index.tsx             # Main page component
+├── assets/                   # Images and media
+└── styles/                   # Global styles
+```
 
-Follow these steps:
+## 🎯 Case Studies
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 1. Bhoomivardhan - AI Soil Intelligence
+- **Category**: AgriTech
+- **Duration**: 6 months
+- **Tech**: AI/ML, IoT, Cloud, Mobile App
+- **Impact**: Real-time soil intelligence for 10,000+ farmers
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 2. Mission 500 - Digital Governance Platform
+- **Category**: GovTech
+- **Duration**: 8 months
+- **Tech**: RBAC, Geo-Verification, Workflow Engine
+- **Impact**: Transparent governance across 50+ villages
 
-# Step 3: Install the necessary dependencies.
-npm i
+### 3. Raseup - Teacher Training Platform
+- **Category**: EdTech
+- **Duration**: 4 months
+- **Tech**: SaaS, Analytics, Real-time Chat
+- **Impact**: Standardized training for 500+ teachers
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 📱 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Agyat192/sunilbokre.git
+
+# Navigate to the project directory
+cd sunilbokare-visionary-tech-portfolio-main
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Build for Production
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Build the project
+npm run build
 
-**Use GitHub Codespaces**
+# Preview the build
+npm run preview
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🌐 Deployment
 
-## What technologies are used for this project?
+### GitHub Pages
 
-This project is built with:
+1. Push changes to the `main` branch
+2. Enable GitHub Pages in repository settings
+3. Select source as "Deploy from a branch"
+4. Choose `main` branch and `/ (root)` folder
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Netlify/Vercel
 
-## How can I deploy this project?
+1. Connect your GitHub repository
+2. Configure build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📧 Contact
 
-## Can I connect a custom domain to my Lovable project?
+- **Email**: snlbokare@gmail.com
+- **Phone**: +91 9322739360
+- **WhatsApp**: Click phone number for direct chat
+- **Location**: India
 
-Yes, you can!
+## 🏆 Achievements
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Magic 2025 Pitch Lab Finalist
+- Eureka 2025 Zonelist Honouree
+- Google Dragon Awardee
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check [issues page](https://github.com/Agyat192/sunilbokre/issues).
+
+---
+
+**Built with ❤️ by Sunil Bokare**
