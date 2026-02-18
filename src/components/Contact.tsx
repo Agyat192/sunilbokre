@@ -31,24 +31,42 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
+      // Validate form
+      if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
+        alert('Please fill in all fields');
+        setIsSubmitting(false);
+        return;
+      }
 
-      const data = await response.json();
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formState.email)) {
+        alert('Please enter a valid email address');
+        setIsSubmitting(false);
+        return;
+      }
 
-      if (response.ok) {
+      // For static site, we'll use a simple approach
+      // Option 1: Open email client with pre-filled message
+      const subject = encodeURIComponent('Portfolio Contact Form Submission');
+      const body = encodeURIComponent(
+        `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`
+      );
+      
+      const mailtoLink = `mailto:slnbokare@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Create a temporary link to trigger the mailto
+      const link = document.createElement('a');
+      link.href = mailtoLink;
+      link.click();
+
+      // Show success state after a short delay
+      setTimeout(() => {
         setIsSubmitted(true);
         setFormState({ name: '', email: '', message: '' });
         setTimeout(() => setIsSubmitted(false), 3000);
-      } else {
-        console.error('Failed to send message:', data.message);
-        alert('Failed to send message: ' + data.message);
-      }
+      }, 500);
+
     } catch (error) {
       console.error('Error sending message:', error);
       alert('An error occurred. Please try again later.');
@@ -212,7 +230,7 @@ const Contact = () => {
                     animate={{ opacity: isSubmitted ? 1 : 0, y: isSubmitted ? 0 : 10 }}
                     transition={{ delay: 0.2 }}
                   >
-                    Message Sent!
+                    Opening Email Client...
                   </motion.p>
                   <motion.p
                     className="text-muted-foreground"
@@ -220,7 +238,7 @@ const Contact = () => {
                     animate={{ opacity: isSubmitted ? 1 : 0 }}
                     transition={{ delay: 0.3 }}
                   >
-                    I'll get back to you soon.
+                    Please send the email to complete your message.
                   </motion.p>
                 </motion.div>
               </motion.div>
