@@ -1,10 +1,11 @@
 import CursorFollower from '@/components/CursorFollower';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
+import EnhancedHero from '@/components/EnhancedHero';
+import HomeAbout from '@/components/HomeAbout';
+import EnhancedSkills from '@/components/EnhancedSkills';
 import Clients from '@/components/Clients';
+import CaseStudies from '@/components/CaseStudies';
 import SecuritySection from '@/components/SecuritySection';
 import ScalabilitySection from '@/components/ScalabilitySection';
 import TechStack from '@/components/TechStack';
@@ -21,10 +22,11 @@ const Index = () => {
       <Navigation />
 
       <main>
-        <Hero />
-        <About />
-        <Skills />
+        <EnhancedHero />
+        <HomeAbout />
+        <EnhancedSkills />
         <Clients />
+        <CaseStudies />
         <SecuritySection />
         <ScalabilitySection />
         <TechStack />

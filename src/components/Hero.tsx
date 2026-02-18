@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
 import { ArrowDown, Sparkles } from 'lucide-react';
+import ProfilePhoto from './ProfilePhoto';
 
 const roles = [
   "Co-Founder @ Bhoomivardhan Agritech",
@@ -93,133 +94,142 @@ const Hero = () => {
         className="absolute bottom-1/4 -right-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px] animate-pulse-glow"
       />
 
-      <motion.div
-        style={{ y, opacity, scale }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
-      >
-        {/* Badge with bounce animation */}
-        <motion.div
-          initial={{ opacity: 0, y: -30, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 0.8,
-            type: "spring",
-            bounce: 0.4
-          }}
-          whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(var(--primary) / 0.3)" }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass glow-sm mb-8 cursor-default"
-        >
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="text-center lg:text-left">
+          {/* Badge with bounce animation */}
           <motion.div
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            initial={{ opacity: 0, y: -30, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              type: "spring",
+              bounce: 0.4
+            }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(var(--primary) / 0.3)" }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass glow-sm mb-8 cursor-default mx-auto lg:mx-0"
           >
-            <Sparkles className="w-4 h-4 text-primary" />
+            <motion.div
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+            </motion.div>
+            <span className="text-sm text-muted-foreground">Designing Secure & Scalable Digital Systems</span>
           </motion.div>
-          <span className="text-sm text-muted-foreground">Designing Secure & Scalable Digital Systems</span>
-        </motion.div>
 
-        {/* Animated Name - Letter by letter */}
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight"
-        >
-          {name.split('').map((letter, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={letterVariants}
-              className={`inline-block ${letter === ' ' ? 'w-4' : ''} ${i >= 6 ? 'text-gradient' : 'text-foreground'}`}
-              whileHover={{
-                scale: 1.2,
-                color: 'hsl(var(--primary))',
-                transition: { duration: 0.1 }
-              }}
-            >
-              {letter === ' ' ? '\u00A0' : letter}
-            </motion.span>
-          ))}
-        </motion.h1>
-
-        {/* Typing animation for roles */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="h-12 md:h-16 mb-8 flex items-center justify-center"
-        >
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
-            {displayText}
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.5, repeat: Infinity }}
-              className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1 align-middle"
-            />
-          </p>
-        </motion.div>
-
-        {/* Description with word animation */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-12 px-2"
-        >
-          {"I help startups build high-performance SaaS platforms, backend systems, and cloud infrastructure designed for long-term scale and security.".split(' ').map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 + i * 0.05 }}
-              className="inline-block mr-1.5"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.p>
-
-        {/* CTA Buttons with enhanced hover */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <motion.button
-            onClick={scrollToWork}
-            data-magnetic
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium overflow-hidden text-sm sm:text-base"
+          {/* Animated Name - Letter by letter */}
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight"
           >
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-primary via-cyan-500 to-primary"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              style={{ opacity: 0.3 }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              Request Architecture Review
+            {name.split('').map((letter, i) => (
               <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+                key={i}
+                custom={i}
+                variants={letterVariants}
+                className={`inline-block ${letter === ' ' ? 'w-4' : ''} ${i >= 6 ? 'text-gradient' : 'text-foreground'}`}
+                whileHover={{
+                  scale: 1.2,
+                  color: 'hsl(var(--primary))',
+                  transition: { duration: 0.1 }
+                }}
               >
-                →
+                {letter === ' ' ? '\u00A0' : letter}
               </motion.span>
-            </span>
-          </motion.button>
+            ))}
+          </motion.h1>
 
-          <motion.button
-            onClick={scrollToContact}
-            data-magnetic
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="group px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-medium transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 text-sm sm:text-base"
+          {/* Typing animation for roles */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="h-12 md:h-16 mb-8 flex items-center justify-center lg:justify-start"
           >
-            <span className="text-gradient">Let's Collaborate</span>
-          </motion.button>
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light">
+              {displayText}
+              <motion.span
+                animate={{ opacity: [1, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity }}
+                className="inline-block w-0.5 h-6 md:h-8 bg-primary ml-1 align-middle"
+              />
+            </p>
+          </motion.div>
+
+          {/* Description with word animation */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8 sm:mb-12 px-2 lg:px-0"
+          >
+            {"I help startups build high-performance SaaS platforms, backend systems, and cloud infrastructure designed for long-term scale and security.".split(' ').map((word, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + i * 0.05 }}
+                className="inline-block mr-1.5"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.p>
+
+          {/* CTA Buttons with enhanced hover */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+          >
+            <motion.button
+              onClick={scrollToWork}
+              data-magnetic
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-primary text-primary-foreground font-medium overflow-hidden text-sm sm:text-base"
+            >
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-primary via-cyan-500 to-primary"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+                style={{ opacity: 0.3 }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                Request Architecture Review
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </span>
+            </motion.button>
+
+            <motion.button
+              onClick={scrollToContact}
+              data-magnetic
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="group px-6 sm:px-8 py-3 sm:py-4 rounded-full glass font-medium transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 text-sm sm:text-base"
+            >
+              <span className="text-gradient">Let's Collaborate</span>
+            </motion.button>
+          </motion.div>
+        </div>
+
+        {/* Profile Photo Section */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.5, type: "spring" }}
+          className="order-first lg:order-last mb-10 lg:mb-0"
+        >
+          <ProfilePhoto />
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Enhanced scroll indicator */}
       <motion.div

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-  { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-  { icon: Mail, href: 'mailto:contact@sunilbokare.dev', label: 'Email' },
+  { icon: Github, href: 'https://github.com/Agyat192', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/sunil-bokare', label: 'LinkedIn' },
+  { icon: Instagram, href: 'https://www.instagram.com/sunil_bokare_patil_192?utm_source=qr&igsh=YXNhbjl6bHoyc3ph', label: 'Instagram' },
+  { icon: Mail, href: 'mailto:snlbokare@gmail.com', label: 'Email' },
 ];
 
 const Footer = () => {
@@ -13,8 +13,8 @@ const Footer = () => {
     <footer className="relative py-12 px-6 overflow-hidden">
       {/* Animated grid background */}
       <div className="absolute inset-0 opacity-5">
-        <div 
-          className="absolute inset-0" 
+        <div
+          className="absolute inset-0"
           style={{
             backgroundImage: `
               linear-gradient(to right, hsl(217, 91%, 60%) 1px, transparent 1px),

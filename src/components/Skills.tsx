@@ -17,56 +17,56 @@ const skills = [
     title: 'Android Development',
     description: 'Native and cross-platform mobile applications with modern UI/UX',
     level: 90,
-    color: 'from-green-500 to-emerald-500'
+    color: 'from-gray-700 to-gray-900'
   },
   {
     icon: Globe,
     title: 'Web Development',
     description: 'Full-stack web applications with React, Node.js, and modern frameworks',
     level: 95,
-    color: 'from-blue-500 to-cyan-500'
+    color: 'from-gray-600 to-gray-800'
   },
   {
     icon: Server,
     title: 'System Architecture',
     description: 'Scalable and maintainable system designs for enterprise applications',
     level: 88,
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-gray-700 to-gray-900'
   },
   {
     icon: Shield,
     title: 'Network Security',
     description: 'Secure network infrastructure and cybersecurity implementations',
     level: 85,
-    color: 'from-red-500 to-orange-500'
+    color: 'from-gray-800 to-black'
   },
   {
     icon: Cpu,
     title: 'IoT & AI Systems',
     description: 'Intelligent connected devices with machine learning capabilities',
     level: 92,
-    color: 'from-cyan-500 to-blue-500'
+    color: 'from-gray-600 to-gray-800'
   },
   {
     icon: Database,
-    title: 'Database Design',
-    description: 'Optimized database architectures for high-performance applications',
-    level: 87,
-    color: 'from-yellow-500 to-amber-500'
+    title: 'Cloud Infrastructure',
+    description: 'AWS, Azure, and GCP deployments with CI/CD pipelines',
+    level: 86,
+    color: 'from-gray-700 to-gray-900'
   },
   {
     icon: Code,
     title: 'API Development',
     description: 'RESTful and GraphQL APIs with comprehensive documentation',
     level: 93,
-    color: 'from-indigo-500 to-violet-500'
+    color: 'from-gray-700 to-gray-900'
   },
   {
     icon: Cloud,
     title: 'Cloud Infrastructure',
     description: 'AWS, Azure, and GCP deployments with CI/CD pipelines',
     level: 86,
-    color: 'from-teal-500 to-cyan-500'
+    color: 'from-gray-600 to-gray-800'
   }
 ];
 

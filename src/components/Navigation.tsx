@@ -1,46 +1,37 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import signImage from '@/assets/sign.png';
 
 const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/work', label: 'Work' },
+  // { href: '#skills', label: 'Skills' }, // Skills is part of About now
+  { href: '/contact', label: 'Contact' },
 ];
+
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
   const { scrollY } = useScroll();
   const bgOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Detect active section
-      const sections = ['hero', 'about', 'skills', 'contact'];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(`#${section}`);
-            break;
-          }
-        }
-      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavigation = (href: string) => {
+    navigate(href);
+    window.scrollTo(0, 0);
     setIsOpen(false);
   };
 
@@ -61,18 +52,23 @@ const Navigation = () => {
           {/* Animated Logo */}
           <motion.a
             href="#"
-            className="font-display text-xl font-bold text-gradient relative"
+            className="relative w-12 h-12 flex items-center justify-center"
             data-magnetic
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.span
+            <motion.div
+              className="w-full h-full rounded-full overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm"
               initial={{ opacity: 0, rotate: -180 }}
               animate={{ opacity: 1, rotate: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              SB
-            </motion.span>
+              <img
+                src={signImage}
+                alt="Sunil Bokare Signature"
+                className="w-full h-full object-contain p-1"
+              />
+            </motion.div>
             <motion.div
               className="absolute -inset-2 rounded-full bg-primary/10"
               initial={{ scale: 0 }}
@@ -89,19 +85,19 @@ const Navigation = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 * index }}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => handleNavigation(link.href)}
                 className="relative text-muted-foreground hover:text-foreground transition-colors group py-2"
                 data-magnetic
                 whileHover={{ y: -2 }}
               >
-                <span className={activeSection === link.href ? 'text-primary' : ''}>
+                <span className={location.pathname === link.href ? 'text-primary' : ''}>
                   {link.label}
                 </span>
                 {/* Underline animation */}
                 <motion.span
                   className="absolute -bottom-0 left-0 h-0.5 bg-primary rounded-full"
                   initial={{ width: 0 }}
-                  animate={{ width: activeSection === link.href ? '100%' : 0 }}
+                  animate={{ width: location.pathname === link.href ? '100%' : 0 }}
                   whileHover={{ width: '100%' }}
                   transition={{ duration: 0.2 }}
                 />
@@ -193,7 +189,7 @@ const Navigation = () => {
                     type: "spring",
                     stiffness: 100
                   }}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavigation(link.href)}
                   className="font-display text-3xl font-bold hover:text-gradient transition-all relative"
                   whileHover={{ scale: 1.1, x: 10 }}
                   whileTap={{ scale: 0.95 }}
