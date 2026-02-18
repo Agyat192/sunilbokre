@@ -1,0 +1,2 @@
+# Handle JavaScript modules with correct MIME type
+/assets/*    200
