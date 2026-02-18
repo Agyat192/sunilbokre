@@ -46,22 +46,37 @@ const Contact = () => {
         return;
       }
 
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
+      // For static deployment, use alternative contact methods
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Local development - try API
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formState),
+          });
 
-      const data = await response.json();
+          const data = await response.json();
 
-      if (response.ok && data.success) {
-        setIsSubmitted(true);
-        setFormState({ name: '', email: '', message: '' });
-        setTimeout(() => setIsSubmitted(false), 3000);
+          if (response.ok && data.success) {
+            setIsSubmitted(true);
+            setFormState({ name: '', email: '', message: '' });
+            setTimeout(() => setIsSubmitted(false), 3000);
+          } else {
+            throw new Error(data.message || 'Failed to send message');
+          }
+        } catch (error) {
+          console.error('API Error:', error);
+          throw error;
+        }
       } else {
-        throw new Error(data.message || 'Failed to send message');
+        // Production static deployment - use mailto link
+        const subject = encodeURIComponent(`Portfolio Contact: ${formState.name}`);
+        const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
+        window.location.href = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
+        return;
       }
 
     } catch (error) {
