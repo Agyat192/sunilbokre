@@ -40,7 +40,9 @@ const handler = async (req, res) => {
 
     // Email transporter configuration
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // true for 465, false for other ports
         auth: {
             user: 'snlbokare@gmail.com',
             pass: 'hxan nois oxvc kzdj'
