@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Add CORS headers helper
 const allowCors = fn => async (req, res) => {
@@ -69,4 +69,4 @@ const handler = async (req, res) => {
     }
 };
 
-module.exports = allowCors(handler);
+export default allowCors(handler);
