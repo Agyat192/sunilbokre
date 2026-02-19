@@ -29,6 +29,15 @@ const handler = async (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
+    // Debug environment variables
+    console.log('EMAIL_USER present:', !!process.env.EMAIL_USER);
+    console.log('EMAIL_PASS present:', !!process.env.EMAIL_PASS);
+
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        console.error('Missing environment variables');
+        return res.status(500).json({ success: false, message: 'Server configuration error: Missing email credentials' });
+    }
+
     // Email transporter configuration
     const transporter = nodemailer.createTransport({
         service: 'gmail',
