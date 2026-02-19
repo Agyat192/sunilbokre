@@ -47,36 +47,28 @@ const Contact = () => {
       }
 
       // For static deployment, use alternative contact methods
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        // Local development - try API
-        try {
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formState),
-          });
+      // Submit to API
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formState),
+        });
 
-          const data = await response.json();
+        const data = await response.json();
 
-          if (response.ok && data.success) {
-            setIsSubmitted(true);
-            setFormState({ name: '', email: '', message: '' });
-            setTimeout(() => setIsSubmitted(false), 3000);
-          } else {
-            throw new Error(data.message || 'Failed to send message');
-          }
-        } catch (error) {
-          console.error('API Error:', error);
-          throw error;
+        if (response.ok && data.success) {
+          setIsSubmitted(true);
+          setFormState({ name: '', email: '', message: '' });
+          setTimeout(() => setIsSubmitted(false), 3000);
+        } else {
+          throw new Error(data.message || 'Failed to send message');
         }
-      } else {
-        // Production static deployment - use mailto link
-        const subject = encodeURIComponent(`Portfolio Contact: ${formState.name}`);
-        const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`);
-        window.location.href = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
-        return;
+      } catch (error) {
+        console.error('API Error:', error);
+        throw error;
       }
 
     } catch (error) {
@@ -236,22 +228,22 @@ const Contact = () => {
                   >
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </motion.div>
-                    <motion.p
-                      className="text-2xl font-display font-bold mb-2"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: isSubmitted ? 1 : 0, y: isSubmitted ? 0 : 10 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      Message Sent!
-                    </motion.p>
-                    <motion.p
-                      className="text-muted-foreground"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: isSubmitted ? 1 : 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      Thanks for reaching out. I'll get back to you soon.
-                    </motion.p>
+                  <motion.p
+                    className="text-2xl font-display font-bold mb-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: isSubmitted ? 1 : 0, y: isSubmitted ? 0 : 10 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    Message Sent!
+                  </motion.p>
+                  <motion.p
+                    className="text-muted-foreground"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isSubmitted ? 1 : 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    Thanks for reaching out. I'll get back to you soon.
+                  </motion.p>
                 </motion.div>
               </motion.div>
 
