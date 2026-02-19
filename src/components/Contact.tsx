@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useCallback } from 'react';
 import { CheckCircle, Sparkles } from 'lucide-react';
+import { toast } from "sonner";
 import AnimatedInput from './contact/AnimatedInput';
 import AnimatedTextarea from './contact/AnimatedTextarea';
 import SubmitButton from './contact/SubmitButton';
@@ -28,12 +29,13 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Submit button clicked, starting submission...");
     setIsSubmitting(true);
 
     try {
       // Validate form
       if (!formState.name.trim() || !formState.email.trim() || !formState.message.trim()) {
-        alert('Please fill in all fields');
+        toast.error('Please fill in all fields');
         setIsSubmitting(false);
         return;
       }
@@ -41,13 +43,14 @@ const Contact = () => {
       // Validate email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formState.email)) {
-        alert('Please enter a valid email address');
+        toast.error('Please enter a valid email address');
         setIsSubmitting(false);
         return;
       }
 
       // For static deployment, use alternative contact methods
       // Submit to API
+      console.log("Sending request to /api/contact...");
       try {
         const response = await fetch('/api/contact', {
           method: 'POST',
@@ -57,10 +60,13 @@ const Contact = () => {
           body: JSON.stringify(formState),
         });
 
+        console.log("Response status:", response.status);
         const data = await response.json();
+        console.log("Response data:", data);
 
         if (response.ok && data.success) {
           setIsSubmitted(true);
+          toast.success("Message sent successfully!");
           setFormState({ name: '', email: '', message: '' });
           setTimeout(() => setIsSubmitted(false), 3000);
         } else {
@@ -73,9 +79,10 @@ const Contact = () => {
 
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('An error occurred. Please try again later.');
+      toast.error('An error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
+      console.log("Submission process finished.");
     }
   };
 
@@ -283,7 +290,7 @@ const Contact = () => {
                   maxLength={500}
                 />
 
-                <div className="pt-4">
+                <div className="pt-4 relative z-20">
                   <SubmitButton
                     isSubmitting={isSubmitting}
                     isSubmitted={isSubmitted}
