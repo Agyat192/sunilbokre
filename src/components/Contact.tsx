@@ -158,7 +158,7 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3, type: "spring" }}
           >
-            {"Let's Connect".split('').map((char, i) => (
+            {"Let's ".split('').map((char, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -175,7 +175,7 @@ const Contact = () => {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.8 }}
             >
-              onnect
+              Connect
             </motion.span>
           </motion.h2>
 

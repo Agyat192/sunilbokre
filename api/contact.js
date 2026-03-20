@@ -29,7 +29,14 @@ const handler = async (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
+    // Debug environment variables (without revealing values)
+    console.log('EMAIL_USER check:', process.env.EMAIL_USER ? 'Set' : 'Missing');
+    console.log('EMAIL_PASS check:', process.env.EMAIL_PASS ? 'Set' : 'Missing');
 
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        console.error('Missing environment variables');
+        return res.status(500).json({ success: false, message: 'Server configuration error: Missing email credentials' });
+    }
 
     // Email transporter configuration
     const transporter = nodemailer.createTransport({
@@ -37,8 +44,8 @@ const handler = async (req, res) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'snlbokare@gmail.com',
-            pass: 'hxan nois oxvc kzdj'
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
         }
     });
 
